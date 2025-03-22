@@ -148,7 +148,7 @@
 </script>
 
 <div class="container mx-auto p-4">
-	<div class="fixed left-0 right-0 top-0 z-20 bg-blue-100 p-4 shadow-lg">
+	<div class="bg-base-100 fixed left-0 right-0 top-0 z-20 p-4 shadow-lg">
 		<div class="container mx-auto">
 			<div class="flex items-center justify-between">
 				<div>
@@ -193,7 +193,7 @@
 							type="text"
 							bind:value={searchQuery}
 							placeholder="Search unselected subreddits..."
-							class="input input-neutral w-full"
+							class="input input-bordered w-full"
 						/>
 						{#if searchQuery}
 							<button
@@ -236,133 +236,138 @@
 					</div>
 				{/if}
 			{/if}
-			<div class="z-0 mt-4 grid grid-cols-1 gap-6 md:grid-cols-2">
-				<div class="card-body flex-none border-b">
-					<h3 class="text-xl">Available Subreddits ({filteredUnselectedSubreddits.length})</h3>
-				</div>
-				<div class="card-body flex justify-between border-b">
-					<h3 class="text-xl">Selected for Unsubscribe ({selectedSubreddits.length})</h3>
-					<div class="mx-auto flex justify-end">
-						<!--
-							<button
-								class="btn bg-blue-400"
-								on:click={handleUnsubscribe}
-								disabled={unsubscribing || selectedSubreddits.length === 0}
-							>
-								Unsubscribe from Selected ({selectedSubreddits.length})
-							</button>
-							-->
-						<Button onclick={handleUnsubscribe} variant="destructive"
-							>Unsubscribe from Selected ({selectedSubreddits.length})</Button
-						>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 
 	{#if !loading && !error}
-		<div class="z-0 grid h-[calc(100vh-8rem)] grid-cols-1 gap-6 pt-[12rem] md:grid-cols-2">
-			<!-- Unselected Subreddits -->
-			<div class="card bg-base-100 flex flex-col">
-				<div class="card-body h-80 flex-1 overflow-auto p-0">
-					<div class="space-y-2 p-4">
-						{#each filteredUnselectedSubreddits as sr (sr.id)}
-							<button
-								class="card card-compact bg-base-200 hover:bg-base-300 w-full transition-colors"
-								on:click={() => handleSubredditClick(sr)}
-							>
-								<div class="card-body">
-									<div class="flex items-center justify-between">
-										<div class="flex-1">
-											<div class="flex items-center gap-3">
-												{#if sr.icon}
-													<img
-														src={sr.icon}
-														alt={`${sr.name} icon`}
-														class="h-8 w-8 rounded-full object-cover"
-														on:error={(e) =>
-															((e.currentTarget as HTMLImageElement).src =
-																'https://www.redditstatic.com/desktop2x/img/favicon/android-icon-192x192.png')}
-													/>
-												{:else}
-													<div
-														class="bg-primary/10 flex h-8 w-8 items-center justify-center rounded-full"
-													>
-														<span class="text-primary text-lg">r/</span>
+		<div class="flex h-[calc(100vh-8rem)] flex-col pt-24">
+			<div class="flex flex-1 overflow-hidden">
+				<!-- Unselected Subreddits -->
+				<div class="flex w-1/2 flex-col overflow-hidden border-r">
+					<div class="bg-base-100 flex-none border-b p-4">
+						<h3 class="text-xl">Available Subreddits ({filteredUnselectedSubreddits.length})</h3>
+					</div>
+					<div class="flex-1 overflow-y-auto">
+						<div class="space-y-2 p-4">
+							{#each filteredUnselectedSubreddits as sr (sr.id)}
+								<button
+									class="card card-compact bg-base-200 hover:bg-base-300 w-full transition-colors"
+									on:click={() => handleSubredditClick(sr)}
+								>
+									<div class="">
+										<div class="flex items-center justify-between">
+											<div class="flex-1">
+												<div class="flex items-center gap-3">
+													{#if sr.icon}
+														<img
+															src={sr.icon}
+															alt={`${sr.name} icon`}
+															class="h-8 w-8 rounded-full object-cover"
+															on:error={(e) =>
+																((e.currentTarget as HTMLImageElement).src =
+																	'https://www.redditstatic.com/desktop2x/img/favicon/android-icon-192x192.png')}
+														/>
+													{:else}
+														<div
+															class="bg-primary/10 flex h-8 w-8 items-center justify-center rounded-full"
+														>
+															<span class="text-primary text-lg">r/</span>
+														</div>
+													{/if}
+													<div>
+														<h3 class="card-title text-base">r/{sr.name}</h3>
+														<p class="text-sm opacity-70">
+															{sr.subscribers?.toLocaleString() ?? 0} subscribers
+														</p>
 													</div>
-												{/if}
-												<div>
-													<h3 class="card-title text-base">r/{sr.name}</h3>
-													<p class="text-sm opacity-70">
-														{sr.subscribers?.toLocaleString() ?? 0} subscribers
-													</p>
 												</div>
+												{#if sr.description}
+													<p class="mt-1 line-clamp-2 text-sm opacity-70">
+														{sr.description}
+													</p>
+												{/if}
 											</div>
-											{#if sr.description}
-												<p class="mt-1 line-clamp-2 text-sm opacity-70">
-													{sr.description}
-												</p>
-											{/if}
+											<span class="text-primary">→</span>
 										</div>
-										<span class="text-primary">→</span>
 									</div>
-								</div>
-							</button>
-						{/each}
+								</button>
+							{/each}
+						</div>
+					</div>
+				</div>
+
+				<!-- Selected Subreddits -->
+				<div class="flex w-1/2 flex-col overflow-hidden">
+					<div class="flex w-full justify-between border-b p-4">
+						<h3 class="text-xl">Selected for Unsubscribe ({selectedSubreddits.length})</h3>
+						<button
+							class="rounded-full bg-red-500 px-2 text-lg"
+							on:click={handleUnsubscribe}
+							disabled={unsubscribing || selectedSubreddits.length === 0}
+						>
+							Unsubscribe from Selected ({selectedSubreddits.length})
+						</button>
+					</div>
+					<div class="flex-1 overflow-y-auto">
+						<div class="space-y-2 p-4">
+							{#each selectedSubreddits as sr (sr.id)}
+								<button
+									class="card card-compact bg-primary/5 hover:bg-primary/10 w-full transition-colors"
+									on:click={() => handleSubredditClick(sr)}
+								>
+									<div class="card-body">
+										<div class="flex items-center justify-between">
+											<span class="text-primary">←</span>
+											<div class="flex-1">
+												<div class="flex items-center gap-3">
+													{#if sr.icon}
+														<img
+															src={sr.icon}
+															alt={`${sr.name} icon`}
+															class="h-8 w-8 rounded-full object-cover"
+															on:error={(e) =>
+																((e.currentTarget as HTMLImageElement).src =
+																	'https://www.redditstatic.com/desktop2x/img/favicon/android-icon-192x192.png')}
+														/>
+													{:else}
+														<div
+															class="bg-primary/10 flex h-8 w-8 items-center justify-center rounded-full"
+														>
+															<span class="text-primary text-lg">r/</span>
+														</div>
+													{/if}
+													<div>
+														<h3 class="card-title text-base">r/{sr.name}</h3>
+														<p class="text-sm opacity-70">
+															{sr.subscribers?.toLocaleString() ?? 0} subscribers
+														</p>
+													</div>
+												</div>
+												{#if sr.description}
+													<p class="mt-1 line-clamp-2 text-sm opacity-70">
+														{sr.description}
+													</p>
+												{/if}
+											</div>
+										</div>
+									</div>
+								</button>
+							{/each}
+						</div>
 					</div>
 				</div>
 			</div>
+		</div>
 
-			<!-- Selected Subreddits -->
-			<div class="card bg-base-100 flex flex-col">
-				<div class="card-body flex-1 overflow-y-auto p-0">
-					<div class="space-y-2 p-4">
-						{#each selectedSubreddits as sr (sr.id)}
-							<button
-								class="card card-compact bg-primary/5 hover:bg-primary/10 w-full transition-colors"
-								on:click={() => handleSubredditClick(sr)}
-							>
-								<div class="card-body">
-									<div class="flex items-center justify-between">
-										<span class="text-primary">←</span>
-										<div class="flex-1">
-											<div class="flex items-center gap-3">
-												{#if sr.icon}
-													<img
-														src={sr.icon}
-														alt={`${sr.name} icon`}
-														class="h-8 w-8 rounded-full object-cover"
-														on:error={(e) =>
-															((e.currentTarget as HTMLImageElement).src =
-																'https://www.redditstatic.com/desktop2x/img/favicon/android-icon-192x192.png')}
-													/>
-												{:else}
-													<div
-														class="bg-primary/10 flex h-8 w-8 items-center justify-center rounded-full"
-													>
-														<span class="text-primary text-lg">r/</span>
-													</div>
-												{/if}
-												<div>
-													<h3 class="card-title text-base">r/{sr.name}</h3>
-													<p class="text-sm opacity-70">
-														{sr.subscribers?.toLocaleString() ?? 0} subscribers
-													</p>
-												</div>
-											</div>
-											{#if sr.description}
-												<p class="mt-1 line-clamp-2 text-sm opacity-70">
-													{sr.description}
-												</p>
-											{/if}
-										</div>
-									</div>
-								</div>
-							</button>
-						{/each}
-					</div>
-				</div>
+		<div class="bg-base-100 fixed bottom-0 left-0 right-0 z-10 p-4 shadow-lg">
+			<div class="container mx-auto flex justify-end">
+				<button
+					class="btn btn-primary"
+					on:click={handleUnsubscribe}
+					disabled={unsubscribing || selectedSubreddits.length === 0}
+				>
+					Unsubscribe from Selected ({selectedSubreddits.length})
+				</button>
 			</div>
 		</div>
 	{/if}

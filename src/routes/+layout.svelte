@@ -15,7 +15,7 @@
 
 <ModeWatcher />
 
-<div class="bg-base-100 min-h-screen" data-theme="light">
+<div class="bg-secondary min-h-screen w-full" data-theme="light">
 	<main class="container mx-auto p-2 lg:px-4 lg:py-8">
 		{@render children()}
 	</main>

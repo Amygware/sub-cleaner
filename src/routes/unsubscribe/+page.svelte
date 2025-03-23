@@ -13,6 +13,7 @@
 	import Sun from '@lucide/svelte/icons/sun';
 	import Moon from '@lucide/svelte/icons/moon';
 	import { toggleMode } from 'mode-watcher';
+	import { track } from '@vercel/analytics';
 
 	interface Subreddit {
 		id: string;
@@ -53,6 +54,9 @@
 				...sr,
 				selected: false
 			}));
+			track('subreddits_loaded', {
+				number: subreddits.length
+			});
 			toast.success(`Successfully loaded ${subreddits.length} subreddits`);
 		} catch (err) {
 			console.error('Error fetching subreddits:', err);
@@ -103,6 +107,7 @@
 	}
 
 	async function handleUnsubscribe() {
+		track('unsubscribe_clicked');
 		const token = localStorage.getItem('reddit_token');
 		if (!token) {
 			toast.error('No authentication token found. Please log in again.');
@@ -121,6 +126,10 @@
 		progress = { current: 0, total: subredditsToUnsubscribe.length };
 
 		const toastId = toast.loading('Unsubscribing from selected subreddits...');
+
+		track('unsubscribe_number', {
+			number: subredditsToUnsubscribe.length
+		});
 
 		try {
 			await batchUnsubscribe(token, subredditsToUnsubscribe, (current, total) => {

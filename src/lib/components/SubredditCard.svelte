@@ -32,13 +32,13 @@
 					{/if}
 					<div class="flex w-full justify-between">
 						<h3 class="card-title text-base">r/{subreddit.name}</h3>
-						<p class="text-sm opacity-70">
+						<p class="hidden text-sm opacity-70 md:block">
 							{subreddit.subscribers?.toLocaleString() ?? 0} subscribers
 						</p>
 					</div>
 				</div>
 				{#if subreddit.description}
-					<p class="mt-1 line-clamp-2 text-sm opacity-70">
+					<p class="mt-1 line-clamp-2 hidden text-sm opacity-70 lg:block">
 						{subreddit.description}
 					</p>
 				{/if}

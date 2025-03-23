@@ -158,7 +158,7 @@
 <div class="container mx-auto p-4">
 	<div class="fixed left-0 right-0 top-0 z-20 border-b p-4">
 		<div class="container mx-auto">
-			<div class="flex items-center justify-between">
+			<div class="flex flex-col items-start justify-between gap-2 lg:flex-row">
 				<div>
 					<h1 class="text-2xl font-bold">Sub Cleaner</h1>
 					{#if !loading && !error}
@@ -266,12 +266,14 @@
 		</div>
 	</div>
 	{#if !loading && !error}
-		<div class="flex h-[calc(100vh-6rem)] flex-col pt-24">
+		<div class="mx-auto flex h-[calc(100vh-6rem)] flex-col pt-36 lg:pt-24">
 			<div class="flex flex-1 overflow-hidden">
 				<!-- Unselected Subreddits -->
 				<div class="flex w-1/2 flex-col overflow-hidden border-r">
 					<div class="bg-base-100 flex-none border-b p-4">
-						<h3 class="text-xl">Available Subreddits ({filteredUnselectedSubreddits.length})</h3>
+						<h3 class="text-sm lg:text-xl">
+							Available Subreddits ({filteredUnselectedSubreddits.length})
+						</h3>
 					</div>
 					<div class="flex-1 overflow-y-auto">
 						<div class="space-y-2 p-4">
@@ -291,7 +293,9 @@
 				<!-- Selected Subreddits -->
 				<div class="flex w-1/2 flex-col overflow-hidden">
 					<div class="flex w-full justify-between border-b p-4">
-						<h3 class="text-xl">Selected for Unsubscribe ({selectedSubreddits.length})</h3>
+						<h3 class="text-sm lg:text-xl">
+							Selected for Unsubscribe ({selectedSubreddits.length})
+						</h3>
 					</div>
 					<div class="flex-1 overflow-y-auto">
 						<div class="space-y-2 p-4">

@@ -6,8 +6,8 @@
 	export let variant: 'default' | 'selected' = 'default';
 
 	$: classes = {
-		default: 'hover:bg-gray-100',
-		selected: 'bg-primary/5 hover:bg-primary/10'
+		default: 'hover:bg-primary/10',
+		selected: 'bg-primary/5 hover:bg-secondary/5'
 	}[variant];
 </script>
 

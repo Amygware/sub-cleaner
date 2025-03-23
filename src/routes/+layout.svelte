@@ -4,6 +4,7 @@
 	import { onMount } from 'svelte';
 	import { dev } from '$app/environment';
 	import { inject } from '@vercel/analytics';
+	import { ModeWatcher } from 'mode-watcher';
 
 	let { children } = $props();
 
@@ -11,6 +12,8 @@
 		inject({ mode: dev ? 'development' : 'production' });
 	});
 </script>
+
+<ModeWatcher />
 
 <div class="bg-base-100 min-h-screen" data-theme="light">
 	<main class="container mx-auto px-4 py-8">

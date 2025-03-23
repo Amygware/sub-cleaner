@@ -59,20 +59,20 @@
 	<section class="relative z-10 py-20">
 		<div class="container mx-auto px-4">
 			<div class="grid gap-8 md:grid-cols-3">
-				<div class="rounded-lg bg-gray-800 p-6">
+				<div class="border-primary rounded-lg border p-6">
 					<h3 class="mb-4 text-xl font-semibold">Easy to Use</h3>
 					<p class="text-gray-300">
 						Simple interface to manage your subreddit subscriptions. No complicated settings or
 						confusing options.
 					</p>
 				</div>
-				<div class="rounded-lg bg-gray-800 p-6">
+				<div class="border-primary rounded-lg border p-6">
 					<h3 class="mb-4 text-xl font-semibold">Quick & Efficient</h3>
 					<p class="text-gray-300">
 						Bulk unsubscribe from multiple subreddits at once. Save time and keep your feed clean.
 					</p>
 				</div>
-				<div class="rounded-lg bg-gray-800 p-6">
+				<div class="border-primary rounded-lg border p-6">
 					<h3 class="mb-4 text-xl font-semibold">Secure</h3>
 					<p class="text-gray-300">
 						Your Reddit credentials are never stored. We only use them to help you manage your
@@ -85,9 +85,7 @@
 </div>
 
 <div class="relative z-10 flex min-h-[80vh] items-center justify-center">
-	<div
-		class="w-full max-w-md rounded-lg bg-white/80 p-8 shadow-lg backdrop-blur-sm dark:bg-gray-800/80"
-	>
+	<div class="border-primary w-full max-w-md rounded-lg border p-8 shadow-lg backdrop-blur-sm">
 		<div class="text-center">
 			<h1 class="mb-6 text-2xl font-bold text-gray-900 dark:text-white">Reddit Cleaner</h1>
 			<p class="mb-8 text-gray-600 dark:text-gray-300">

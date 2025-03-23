@@ -31,6 +31,7 @@
 	let circleCenter: Point = { x: 0, y: 0 };
 	let circleRadius = 5;
 	let circleAngle = 0;
+	let isPlaying = false;
 
 	const subreddits = [
 		'r/aww',
@@ -91,6 +92,12 @@
 		isInactive = false;
 		lastInteraction = Date.now();
 		circleAngle = 0;
+	}
+
+	function startGame() {
+		isPlaying = true;
+		initGame();
+		gameLoop = setInterval(gameStep, gameSpeed);
 	}
 
 	function updateCircleCenter() {
@@ -200,12 +207,12 @@
 
 	function gameOver() {
 		isGameOver = true;
+		isPlaying = false;
 		clearInterval(gameLoop);
 	}
 
 	function restartGame() {
-		initGame();
-		gameLoop = setInterval(gameStep, gameSpeed);
+		startGame();
 	}
 
 	function draw() {
@@ -306,7 +313,7 @@
 
 		ctx = canvas.getContext('2d')!;
 		initGame();
-		gameLoop = setInterval(gameStep, gameSpeed);
+		draw(); // Draw initial state
 		window.addEventListener('keydown', handleKeydown);
 
 		return () => {
@@ -318,9 +325,13 @@
 
 <div class="relative h-full w-full">
 	<canvas bind:this={canvas} class="h-full w-full" style="background: transparent;"></canvas>
-	{#if isGameOver}
-		<div class="absolute left-1/2 top-1/3 z-10 -translate-x-1/2 -translate-y-1/2">
-			<Button onclick={restartGame} class="bg-orange-500 hover:bg-orange-600">Restart Game</Button>
+	{#if !isPlaying && !isGameOver}
+		<div class="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
+			<Button on:click={startGame} class="bg-orange-500 hover:bg-orange-600">Play Game</Button>
+		</div>
+	{:else if isGameOver}
+		<div class="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
+			<Button on:click={restartGame} class="bg-orange-500 hover:bg-orange-600">Restart Game</Button>
 		</div>
 	{/if}
 </div>

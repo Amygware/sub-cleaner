@@ -9,8 +9,7 @@
 	import { Trash, Trash2 } from '@lucide/svelte';
 	import SubredditCard from '$lib/components/SubredditCard.svelte';
 	import type { Subreddit } from '$lib/types';
-	import { Checkbox } from '$lib/components/ui/checkbox/index.js';
-	import { Label } from '$lib/components/ui/label/index.js';
+	import { Separator } from '$lib/components/ui/separator/index.js';
 
 	interface Subreddit {
 		id: string;
@@ -254,9 +253,8 @@
 			{/if}
 		</div>
 	</div>
-
 	{#if !loading && !error}
-		<div class="flex h-[calc(100vh-8rem)] flex-col pt-24">
+		<div class="flex h-[calc(100vh-6rem)] flex-col pt-24">
 			<div class="flex flex-1 overflow-hidden">
 				<!-- Unselected Subreddits -->
 				<div class="flex w-1/2 flex-col overflow-hidden border-r">
@@ -266,6 +264,7 @@
 					<div class="flex-1 overflow-y-auto">
 						<div class="space-y-2 p-4">
 							{#each filteredUnselectedSubreddits as sr (sr.id)}
+								<Separator />
 								<SubredditCard
 									subreddit={sr}
 									direction="right"
@@ -285,6 +284,7 @@
 					<div class="flex-1 overflow-y-auto">
 						<div class="space-y-2 p-4">
 							{#each selectedSubreddits as sr (sr.id)}
+								<Separator />
 								<SubredditCard
 									subreddit={sr}
 									direction="left"

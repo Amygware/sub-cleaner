@@ -18,4 +18,4 @@
 	</main>
 </div>
 
-<Toaster richColors closeButton />
+<Toaster closeButton />

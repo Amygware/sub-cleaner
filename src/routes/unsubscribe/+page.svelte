@@ -5,7 +5,12 @@
 	import { toast } from 'svelte-sonner';
 	import LoadingOverlay from '$lib/components/LoadingOverlay.svelte';
 	import { Button } from '$lib/components/ui/button/index.js';
-	import { ScrollArea } from '$lib/components/ui/scroll-area/index.js';
+	import { Input } from '$lib/components/ui/input/index.js';
+	import { Trash, Trash2 } from '@lucide/svelte';
+	import SubredditCard from '$lib/components/SubredditCard.svelte';
+	import type { Subreddit } from '$lib/types';
+	import { Checkbox } from '$lib/components/ui/checkbox/index.js';
+	import { Label } from '$lib/components/ui/label/index.js';
 
 	interface Subreddit {
 		id: string;
@@ -41,6 +46,7 @@
 			if (!fetchedSubreddits) {
 				throw new Error('No subreddits data received');
 			}
+
 			subreddits = fetchedSubreddits.map((sr: Omit<Subreddit, 'selected'>) => ({
 				...sr,
 				selected: false
@@ -148,11 +154,11 @@
 </script>
 
 <div class="container mx-auto p-4">
-	<div class="bg-base-100 fixed left-0 right-0 top-0 z-20 p-4 shadow-lg">
+	<div class="fixed left-0 right-0 top-0 z-20 border-b p-4">
 		<div class="container mx-auto">
 			<div class="flex items-center justify-between">
 				<div>
-					<h1 class="text-2xl font-bold">Your Subreddits</h1>
+					<h1 class="text-2xl font-bold">Sub Cleaner</h1>
 					{#if !loading && !error}
 						<p class="mt-1 text-sm opacity-70">
 							{subreddits.length} subreddits • {totalSubscribers.toLocaleString()} total subscribers
@@ -162,15 +168,26 @@
 						</p>
 					{/if}
 				</div>
-				<button
-					class="btn btn-outline"
-					on:click={() => {
-						localStorage.removeItem('reddit_token');
-						goto('/');
-					}}
-				>
-					Switch Account
-				</button>
+				<div class="flex items-center gap-2">
+					<Button
+						onclick={handleUnsubscribe}
+						disabled={unsubscribing || selectedSubreddits.length === 0}
+					>
+						{#if selectedSubreddits.length === 0}
+							<Trash />
+						{:else}
+							<Trash2 />
+						{/if}
+						Unsubscribe from Selected ({selectedSubreddits.length})
+					</Button>
+					<Button
+						onclick={() => {
+							localStorage.removeItem('reddit_token');
+							goto('/');
+						}}
+						variant="outline">Switch Account</Button
+					>
+				</div>
 			</div>
 
 			{#if error}
@@ -189,12 +206,11 @@
 			{:else if !loading}
 				<div class="mt-4 flex items-center gap-4">
 					<div class="relative flex-1">
-						<input
-							type="text"
+						<Input
 							bind:value={searchQuery}
+							type="text"
 							placeholder="Search unselected subreddits..."
-							class="input input-bordered w-full"
-						/>
+						></Input>
 						{#if searchQuery}
 							<button
 								class="btn btn-ghost btn-sm absolute right-2 top-1/2 -translate-y-1/2"
@@ -250,47 +266,12 @@
 					<div class="flex-1 overflow-y-auto">
 						<div class="space-y-2 p-4">
 							{#each filteredUnselectedSubreddits as sr (sr.id)}
-								<button
-									class="card card-compact bg-base-200 hover:bg-base-300 w-full transition-colors"
+								<SubredditCard
+									subreddit={sr}
+									direction="right"
+									variant="default"
 									on:click={() => handleSubredditClick(sr)}
-								>
-									<div class="">
-										<div class="flex items-center justify-between">
-											<div class="flex-1">
-												<div class="flex items-center gap-3">
-													{#if sr.icon}
-														<img
-															src={sr.icon}
-															alt={`${sr.name} icon`}
-															class="h-8 w-8 rounded-full object-cover"
-															on:error={(e) =>
-																((e.currentTarget as HTMLImageElement).src =
-																	'https://www.redditstatic.com/desktop2x/img/favicon/android-icon-192x192.png')}
-														/>
-													{:else}
-														<div
-															class="bg-primary/10 flex h-8 w-8 items-center justify-center rounded-full"
-														>
-															<span class="text-primary text-lg">r/</span>
-														</div>
-													{/if}
-													<div>
-														<h3 class="card-title text-base">r/{sr.name}</h3>
-														<p class="text-sm opacity-70">
-															{sr.subscribers?.toLocaleString() ?? 0} subscribers
-														</p>
-													</div>
-												</div>
-												{#if sr.description}
-													<p class="mt-1 line-clamp-2 text-sm opacity-70">
-														{sr.description}
-													</p>
-												{/if}
-											</div>
-											<span class="text-primary">→</span>
-										</div>
-									</div>
-								</button>
+								/>
 							{/each}
 						</div>
 					</div>
@@ -300,74 +281,20 @@
 				<div class="flex w-1/2 flex-col overflow-hidden">
 					<div class="flex w-full justify-between border-b p-4">
 						<h3 class="text-xl">Selected for Unsubscribe ({selectedSubreddits.length})</h3>
-						<button
-							class="rounded-full bg-red-500 px-2 text-lg"
-							on:click={handleUnsubscribe}
-							disabled={unsubscribing || selectedSubreddits.length === 0}
-						>
-							Unsubscribe from Selected ({selectedSubreddits.length})
-						</button>
 					</div>
 					<div class="flex-1 overflow-y-auto">
 						<div class="space-y-2 p-4">
 							{#each selectedSubreddits as sr (sr.id)}
-								<button
-									class="card card-compact bg-primary/5 hover:bg-primary/10 w-full transition-colors"
+								<SubredditCard
+									subreddit={sr}
+									direction="left"
+									variant="selected"
 									on:click={() => handleSubredditClick(sr)}
-								>
-									<div class="card-body">
-										<div class="flex items-center justify-between">
-											<span class="text-primary">←</span>
-											<div class="flex-1">
-												<div class="flex items-center gap-3">
-													{#if sr.icon}
-														<img
-															src={sr.icon}
-															alt={`${sr.name} icon`}
-															class="h-8 w-8 rounded-full object-cover"
-															on:error={(e) =>
-																((e.currentTarget as HTMLImageElement).src =
-																	'https://www.redditstatic.com/desktop2x/img/favicon/android-icon-192x192.png')}
-														/>
-													{:else}
-														<div
-															class="bg-primary/10 flex h-8 w-8 items-center justify-center rounded-full"
-														>
-															<span class="text-primary text-lg">r/</span>
-														</div>
-													{/if}
-													<div>
-														<h3 class="card-title text-base">r/{sr.name}</h3>
-														<p class="text-sm opacity-70">
-															{sr.subscribers?.toLocaleString() ?? 0} subscribers
-														</p>
-													</div>
-												</div>
-												{#if sr.description}
-													<p class="mt-1 line-clamp-2 text-sm opacity-70">
-														{sr.description}
-													</p>
-												{/if}
-											</div>
-										</div>
-									</div>
-								</button>
+								/>
 							{/each}
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-
-		<div class="bg-base-100 fixed bottom-0 left-0 right-0 z-10 p-4 shadow-lg">
-			<div class="container mx-auto flex justify-end">
-				<button
-					class="btn btn-primary"
-					on:click={handleUnsubscribe}
-					disabled={unsubscribing || selectedSubreddits.length === 0}
-				>
-					Unsubscribe from Selected ({selectedSubreddits.length})
-				</button>
 			</div>
 		</div>
 	{/if}

@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import LoadingOverlay from '$lib/components/LoadingOverlay.svelte';
 
 	onMount(() => {
 		const hash = window.location.hash.substring(1);
@@ -17,5 +18,3 @@
 		}
 	});
 </script>
-
-<p>Logging you in...</p>

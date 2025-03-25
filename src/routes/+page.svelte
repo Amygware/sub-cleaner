@@ -34,9 +34,9 @@
 <div class="relative min-h-screen text-white">
 	<!-- Hero Section -->
 	<section
-		class="relative z-10 flex min-h-screen w-full flex-col items-center justify-center px-4 text-center"
+		class="relative z-10 flex min-h-screen w-full flex-col items-center justify-center px-4 pb-48 text-center"
 	>
-		<div class="align-center flex w-full max-w-7xl justify-around gap-8">
+		<div class="align-center flex w-full max-w-7xl flex-col justify-around gap-8 md:flex-row">
 			<div class="flex flex-col items-center justify-center">
 				<h1 class="mb-6 text-5xl font-bold tracking-tight sm:text-6xl">
 					Clean Up Your Reddit Feed
@@ -47,11 +47,12 @@
 				</p>
 				<div class="flex justify-center gap-4">
 					<Button onclick={handleLogin} class="bg-orange-500 hover:bg-orange-600"
-						>Get Started</Button
+						>Clean up my reddit feed</Button
 					>
 				</div>
 			</div>
-			<Safari url="www.subcleaner.com/" imageSrc={showcase} />
+			<div></div>
+			<Safari url="www.subcleaner.com/" width={1200} height={700} imageSrc={showcase} />
 		</div>
 	</section>
 
@@ -59,20 +60,20 @@
 	<section class="relative z-10 py-20">
 		<div class="container mx-auto px-4">
 			<div class="grid gap-8 md:grid-cols-3">
-				<div class="border-primary rounded-lg border p-6">
+				<div class="rounded-lg border border-primary p-6">
 					<h3 class="mb-4 text-xl font-semibold">Easy to Use</h3>
 					<p class="text-gray-300">
 						Simple interface to manage your subreddit subscriptions. No complicated settings or
 						confusing options.
 					</p>
 				</div>
-				<div class="border-primary rounded-lg border p-6">
+				<div class="rounded-lg border border-primary p-6">
 					<h3 class="mb-4 text-xl font-semibold">Quick & Efficient</h3>
 					<p class="text-gray-300">
 						Bulk unsubscribe from multiple subreddits at once. Save time and keep your feed clean.
 					</p>
 				</div>
-				<div class="border-primary rounded-lg border p-6">
+				<div class="rounded-lg border border-primary p-6">
 					<h3 class="mb-4 text-xl font-semibold">Secure</h3>
 					<p class="text-gray-300">
 						Your Reddit credentials are never stored. We only use them to help you manage your
@@ -85,7 +86,7 @@
 </div>
 
 <div class="relative z-10 flex min-h-[80vh] items-center justify-center">
-	<div class="border-primary w-full max-w-md rounded-lg border p-8 shadow-lg backdrop-blur-sm">
+	<div class="w-full max-w-md rounded-lg border border-primary p-8 shadow-lg backdrop-blur-sm">
 		<div class="text-center">
 			<h1 class="mb-6 text-2xl font-bold text-gray-900 dark:text-white">Reddit Cleaner</h1>
 			<p class="mb-8 text-gray-600 dark:text-gray-300">
@@ -109,12 +110,13 @@
 	</div>
 </div>
 
-<!-- Snake Game Section (Desktop Only) -->
+<!-- Snake Game Section (Desktop Only)
 {#if isDesktop}
 	<div class="relative h-[400px] w-full">
 		<SnakeGame />
 	</div>
 {/if}
+-->
 
 {#if isLoading}
 	<LoadingOverlay message="Connecting to Reddit..." />

@@ -18,3 +18,9 @@
 		}
 	});
 </script>
+
+<svelte:head>
+	<!-- Prevent search engines from indexing this page -->
+	<title>Processing Login - Reddit Sub Cleaner</title>
+	<meta name="robots" content="noindex, nofollow" />
+</svelte:head>

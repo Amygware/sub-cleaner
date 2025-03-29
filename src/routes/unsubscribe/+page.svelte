@@ -164,6 +164,28 @@
 	}
 </script>
 
+<svelte:head>
+	<!-- Page-specific Meta Tags that override the default ones in layout -->
+	<title>Manage Your Subreddits - Reddit Sub Cleaner</title>
+	<meta name="title" content="Manage Your Subreddits - Reddit Sub Cleaner" />
+	<meta
+		name="description"
+		content="Easily unsubscribe from multiple subreddits at once. Select the subreddits you no longer want and clean up your Reddit feed with one click."
+	/>
+	<meta property="og:title" content="Manage Your Subreddits - Reddit Sub Cleaner" />
+	<meta
+		property="og:description"
+		content="Easily unsubscribe from multiple subreddits at once. Select the subreddits you no longer want and clean up your Reddit feed with one click."
+	/>
+	<meta property="og:url" content="https://subcleaner.com/unsubscribe" />
+	<meta property="twitter:title" content="Manage Your Subreddits - Reddit Sub Cleaner" />
+	<meta
+		property="twitter:description"
+		content="Easily unsubscribe from multiple subreddits at once. Select the subreddits you no longer want and clean up your Reddit feed with one click."
+	/>
+	<link rel="canonical" href="https://subcleaner.com/unsubscribe" />
+</svelte:head>
+
 <div class="container mx-auto p-4">
 	<div class="fixed left-0 right-0 top-0 z-20 border-b p-4">
 		<div class="container mx-auto">
@@ -257,17 +279,18 @@
 				</div>
 
 				{#if unsubscribing}
-					<div class="alert mt-4">
-						<div class="flex w-full flex-col">
+					<LoadingOverlay message={loadingMessage} />
+					<div class="fixed bottom-10 left-1/2 z-50 -translate-x-1/2">
+						<div class="w-full max-w-md rounded-lg bg-secondary p-4 shadow-lg">
 							<div class="mb-2 flex justify-between text-sm">
-								<span>Unsubscribing...</span>
-								<span>{progress.current}/{progress.total}</span>
+								<span>Progress</span>
+								<span>{progress.current} of {progress.total}</span>
 							</div>
 							<progress
-								class="progress progress-primary w-full"
+								class="h-2 w-full rounded-full bg-gray-700"
 								value={progress.current}
 								max={progress.total}
-							/>
+							></progress>
 						</div>
 					</div>
 				{/if}
@@ -278,7 +301,7 @@
 		<div class="mx-auto flex h-[calc(100vh-6rem)] flex-col pt-36 lg:pt-24">
 			<div class="flex flex-1 overflow-hidden">
 				<!-- Unselected Subreddits -->
-				<div class="flex w-1/2 flex-col overflow-hidden border-r">
+				<div class="flex w-1/2 flex-col overflow-hidden border border-black">
 					<div class="bg-base-100 flex-none border-b p-4">
 						<h3 class="text-sm lg:text-xl">
 							Available Subreddits ({filteredUnselectedSubreddits.length})
@@ -300,7 +323,7 @@
 				</div>
 
 				<!-- Selected Subreddits -->
-				<div class="flex w-1/2 flex-col overflow-hidden">
+				<div class="flex w-1/2 flex-col overflow-hidden border border-black">
 					<div class="flex w-full justify-between border-b p-4">
 						<h3 class="text-sm lg:text-xl">
 							Selected for Unsubscribe ({selectedSubreddits.length})

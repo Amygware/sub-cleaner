@@ -1,16 +1,6 @@
-<script lang="ts">
-	import '../app.css';
-	import { Toaster } from '$lib/components/ui/sonner';
-	import { onMount } from 'svelte';
-	import { dev } from '$app/environment';
-	import { inject } from '@vercel/analytics';
-	import { ModeWatcher } from 'mode-watcher';
-
-	let { children } = $props();
-
-	onMount(() => {
-		inject({ mode: dev ? 'development' : 'production' });
-	});
+<script>
+	// SEO metadata for the main page
+	// This file controls the <head> content for the entire site
 </script>
 
 <svelte:head>
@@ -44,6 +34,9 @@
 	/>
 	<meta property="twitter:image" content="/og-image.png" />
 
+	<!-- Canonical URL -->
+	<link rel="canonical" href="https://subcleaner.com/" />
+
 	<!-- Favicon -->
 	<link rel="icon" href="/favicon.ico" />
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -68,13 +61,3 @@
 		}
 	</script>
 </svelte:head>
-
-<ModeWatcher />
-
-<div class="min-h-screen w-full bg-secondary" data-theme="light">
-	<main class="w-full overflow-x-hidden">
-		{@render children()}
-	</main>
-</div>
-
-<Toaster closeButton />

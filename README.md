@@ -1,38 +1,108 @@
-# sv
+# Sub Cleaner
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+<div align="center">
+  <img src="https://raw.githubusercontent.com/amygware/sub-cleaner/main/static/og-image.png" alt="Sub Cleaner Logo" width="600" />
+  <p><strong>Clean up your Reddit feed by easily unsubscribing from multiple subreddits at once.</strong></p>
+</div>
 
-## Creating a project
+## 🚀 Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **Bulk Unsubscribe**: Select and unsubscribe from multiple subreddits with a single click
+- **Secure Authentication**: Uses Reddit's OAuth2 flow - we never see or store your credentials
+- **User-Friendly Interface**: Clean, intuitive design makes managing your subscriptions easy
+- **Privacy-Focused**: No data storage, all processing happens in your browser
+- **Open Source**: Full transparency with MIT-licensed code
+
+## 🔧 Tech Stack
+
+- **Frontend**: SvelteKit, TailwindCSS, Lucide Icons
+- **Authentication**: Reddit OAuth2 API
+- **Deployment**: Vercel
+- **Analytics**: Vercel Analytics (privacy-friendly)
+
+## 📋 Prerequisites
+
+- Node.js 18+ and npm/pnpm
+- A Reddit account
+- A Reddit API application (for development)
+
+## 🛠️ Development Setup
+
+1. **Clone the repository**
 
 ```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
+git clone https://github.com/amygware/sub-cleaner.git
+cd sub-cleaner
 ```
 
-## Developing
+2. **Install dependencies**
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+```bash
+npm install
+# or
+pnpm install
+```
+
+3. **Set up environment variables**
+
+Create a `.env` file in the root directory based on the `.env.example` file:
+
+```
+VITE_REDDIT_CLIENT_ID=your_reddit_client_id
+VITE_REDIRECT_URI=http://localhost:5173/callback
+```
+
+To get your Reddit Client ID:
+- Go to [Reddit's app preferences](https://www.reddit.com/prefs/apps)
+- Create a new app (script)
+- Set the redirect URI to `http://localhost:5173/callback` for local development
+
+4. **Start the development server**
 
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+# or
+pnpm dev
 ```
 
-## Building
-
-To create a production version of your app:
+5. **Build for production**
 
 ```bash
 npm run build
+# or
+pnpm build
 ```
 
-You can preview the production build with `npm run preview`.
+## 🔒 Privacy & Security
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Sub Cleaner is designed with privacy in mind:
+
+- We use Reddit's official OAuth2 flow for authentication
+- Your Reddit credentials are never seen or stored by our servers
+- We only request the minimum permissions needed (`mysubreddits` and `subscribe`)
+- All processing happens in your browser
+- No user data is stored on our servers
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to open issues or submit pull requests.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 👤 Author
+
+Made with ❤️ by [Amygware](https://amygware.com)
+
+---
+
+<div align="center">
+  <p>Not affiliated with Reddit Inc.</p>
+</div>

@@ -79,12 +79,10 @@
 
 	<!-- Hero Section -->
 	<section
-		class="relative z-10 flex min-h-screen w-full flex-col items-center justify-center px-4 pt-16 text-center"
+		class="relative z-10 flex min-h-[600px] w-full flex-col items-center justify-center px-4 pt-16 text-center"
 		aria-labelledby="hero-heading"
 	>
-		<div
-			class="align-center flex w-full max-w-7xl flex-col justify-around gap-12 md:flex-row md:items-center"
-		>
+		<div class="align-center flex w-full max-w-7xl flex-col justify-around gap-12 md:items-center">
 			<div class="flex min-w-80 flex-col items-center justify-center md:items-start md:text-left">
 				<div
 					class="mb-4 inline-flex items-center rounded-full bg-orange-500/10 px-3 py-1 text-sm font-medium text-orange-500"
@@ -110,19 +108,24 @@
 					</div>
 				</div>
 			</div>
-			<div class="relative mt-8 md:mt-0">
-				<div
-					class="absolute -inset-1 rounded-xl bg-gradient-to-r from-orange-500 to-orange-300 opacity-30 blur-xl"
-				></div>
-				<Safari
-					url="www.subcleaner.com/"
-					width={1200}
-					height={600}
-					imageSrc={showcase}
-					alt="Screenshot of the Sub Cleaner interface showing the subreddit management dashboard"
-					class="relative rounded-xl shadow-2xl"
-				/>
-			</div>
+		</div>
+	</section>
+	<section
+		class="relative z-10 my-8 flex min-h-96 w-full flex-col items-center justify-center px-4 pt-16 text-center"
+		aria-labelledby="hero-showcase"
+	>
+		<div class="relative mt-8 md:mt-0">
+			<div
+				class="absolute -inset-1 rounded-xl bg-gradient-to-r from-orange-500 to-orange-300 opacity-30 blur-xl"
+			></div>
+			<Safari
+				url="www.subcleaner.com/"
+				width={1200}
+				height={750}
+				imageSrc={showcase}
+				alt="Screenshot of the Sub Cleaner interface showing the subreddit management dashboard"
+				class="relative rounded-xl shadow-2xl"
+			/>
 		</div>
 	</section>
 

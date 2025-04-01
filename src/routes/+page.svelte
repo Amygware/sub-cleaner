@@ -50,6 +50,12 @@
 			</div>
 			<div class="flex items-center gap-4">
 				<a
+					href="/guide"
+					class="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+				>
+					<span>Guide</span>
+				</a>
+				<a
 					href="https://github.com/amygware/sub-cleaner"
 					target="_blank"
 					rel="noopener noreferrer"

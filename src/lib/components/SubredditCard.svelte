@@ -22,8 +22,7 @@
 							alt={`${subreddit.name} icon`}
 							class="h-8 w-8 rounded-full object-cover"
 							on:error={(e) =>
-								((e.currentTarget as HTMLImageElement).src =
-									'https://www.redditstatic.com/desktop2x/img/favicon/android-icon-192x192.png')}
+								((e.currentTarget as HTMLImageElement).src = '/images/subreddit-fallback.svg')}
 						/>
 					{:else}
 						<div class="bg-primary/10 flex h-8 w-8 items-center justify-center rounded-full">
@@ -51,3 +50,5 @@
 		</div>
 	</div>
 </button>
+
+<link rel="preload" href="/images/subreddit-fallback.svg" as="image">

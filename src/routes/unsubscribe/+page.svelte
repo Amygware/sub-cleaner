@@ -298,7 +298,7 @@
 		</div>
 	</div>
 	{#if !loading && !error}
-		<div class="mx-auto flex h-[calc(100vh-6rem)] flex-col pt-36 lg:pt-24">
+		<div class="mx-auto flex h-[calc(100vh-6rem)] flex-col pt-36 lg:pt-32">
 			<div class="flex flex-1 overflow-hidden">
 				<!-- Unselected Subreddits -->
 				<div class="flex w-1/2 flex-col overflow-hidden border border-black">

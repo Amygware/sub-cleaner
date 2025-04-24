@@ -11,7 +11,7 @@
 	}[variant];
 </script>
 
-<button class="m-1 h-24 w-full rounded-xl transition-colors {classes}" on:click>
+<button class="m-1 min-h-24 w-full rounded-xl transition-colors {classes}" on:click>
 	<div class="">
 		<div class="flex items-center justify-between gap-2 p-2">
 			<div class="flex-1">

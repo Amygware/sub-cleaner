@@ -5,6 +5,7 @@
 	import { dev } from '$app/environment';
 	import { inject } from '@vercel/analytics';
 	import { ModeWatcher } from 'mode-watcher';
+	import Shield from '@lucide/svelte/icons/shield';
 
 	let { children } = $props();
 
@@ -76,5 +77,36 @@
 		{@render children()}
 	</main>
 </div>
+
+<!-- Footer -->
+<footer class="border-t border-border/40 py-8">
+	<div class="container mx-auto px-4">
+		<div class="flex flex-col items-center justify-between gap-4 md:flex-row">
+			<div class="flex items-center gap-2">
+				<Shield class="h-5 w-5 text-orange-500" />
+				<span class="font-semibold">Sub Cleaner</span>
+			</div>
+			<p class="text-sm text-muted-foreground">
+				&copy; {new Date().getFullYear()} Sub Cleaner. Not affiliated with Reddit Inc.
+			</p>
+			<a
+				href="https://amygware.com"
+				class="link link-hover text-sm text-muted-foreground hover:text-foreground"
+				target="_blank"
+				rel="noopener noreferrer">Made by Amygware</a
+			>
+			<div class="flex gap-4">
+				<a
+					href="https://github.com/amygware/sub-cleaner"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="text-sm text-muted-foreground hover:text-foreground"
+				>
+					GitHub
+				</a>
+			</div>
+		</div>
+	</div>
+</footer>
 
 <Toaster closeButton />

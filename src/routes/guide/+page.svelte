@@ -381,7 +381,7 @@
 					</div>
 				</div>
 
-				<h2 id="conclusion" class="mt-8">Conclusion</h2>
+				<h2 id="conclusion" class="mt-8">Conclusion.</h2>
 				<p>
 					Keeping your Reddit subscriptions organized is an important part of maintaining a positive
 					social media experience. While Reddit's native interface makes bulk unsubscribing

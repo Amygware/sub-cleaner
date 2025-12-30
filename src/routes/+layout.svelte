@@ -33,17 +33,22 @@
 		property="og:description"
 		content="Easily unsubscribe from multiple subreddits at once. Take control of your Reddit experience with our simple, secure tool."
 	/>
-	<meta property="og:image" content="/og-image.png" />
+	<meta property="og:image" content="https://subcleaner.com/og-image.png" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Reddit Sub Cleaner - Clean Up Your Reddit Feed" />
+	<meta property="og:site_name" content="Sub Cleaner" />
 
 	<!-- Twitter -->
-	<meta property="twitter:card" content="summary_large_image" />
-	<meta property="twitter:url" content="https://subcleaner.com/" />
-	<meta property="twitter:title" content="Reddit Sub Cleaner - Clean Up Your Reddit Feed" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:url" content="https://subcleaner.com/" />
+	<meta name="twitter:title" content="Reddit Sub Cleaner - Clean Up Your Reddit Feed" />
 	<meta
-		property="twitter:description"
+		name="twitter:description"
 		content="Easily unsubscribe from multiple subreddits at once. Take control of your Reddit experience with our simple, secure tool."
 	/>
-	<meta property="twitter:image" content="/og-image.png" />
+	<meta name="twitter:image" content="https://subcleaner.com/og-image.png" />
+	<meta name="twitter:image:alt" content="Reddit Sub Cleaner - Clean Up Your Reddit Feed" />
 
 	<!-- Favicon -->
 	<link rel="icon" href="/favicon.ico" />

@@ -38,6 +38,33 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Reddit Sub Cleaner - Clean Up Your Reddit Feed</title>
+	<meta name="title" content="Reddit Sub Cleaner - Clean Up Your Reddit Feed" />
+	<meta
+		name="description"
+		content="Easily unsubscribe from multiple subreddits at once. Take control of your Reddit experience with our simple, secure tool."
+	/>
+	<meta name="keywords" content="reddit, subreddit, unsubscribe, clean, feed, reddit cleaner" />
+	<link rel="canonical" href="https://subcleaner.com/" />
+
+	<!-- Open Graph -->
+	<meta property="og:url" content="https://subcleaner.com/" />
+	<meta property="og:title" content="Reddit Sub Cleaner - Clean Up Your Reddit Feed" />
+	<meta
+		property="og:description"
+		content="Easily unsubscribe from multiple subreddits at once. Take control of your Reddit experience with our simple, secure tool."
+	/>
+
+	<!-- Twitter -->
+	<meta name="twitter:url" content="https://subcleaner.com/" />
+	<meta name="twitter:title" content="Reddit Sub Cleaner - Clean Up Your Reddit Feed" />
+	<meta
+		name="twitter:description"
+		content="Easily unsubscribe from multiple subreddits at once. Take control of your Reddit experience with our simple, secure tool."
+	/>
+</svelte:head>
+
 <div class="relative min-h-screen bg-gradient-to-b from-background to-secondary/20 text-foreground">
 	<!-- Header/Navigation -->
 	<header

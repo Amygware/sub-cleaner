@@ -15,38 +15,19 @@
 </script>
 
 <svelte:head>
-	<!-- Primary Meta Tags -->
-	<title>Reddit Sub Cleaner - Clean Up Your Reddit Feed</title>
-	<meta name="title" content="Reddit Sub Cleaner - Clean Up Your Reddit Feed" />
-	<meta
-		name="description"
-		content="Easily unsubscribe from multiple subreddits at once. Take control of your Reddit experience with our simple, secure tool."
-	/>
-	<meta name="keywords" content="reddit, subreddit, unsubscribe, clean, feed, reddit cleaner" />
+	<!-- Site-wide Meta -->
 	<meta name="author" content="Sub Cleaner" />
 
-	<!-- Open Graph / Facebook -->
+	<!-- Open Graph (site-wide) -->
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="https://subcleaner.com/" />
-	<meta property="og:title" content="Reddit Sub Cleaner - Clean Up Your Reddit Feed" />
-	<meta
-		property="og:description"
-		content="Easily unsubscribe from multiple subreddits at once. Take control of your Reddit experience with our simple, secure tool."
-	/>
 	<meta property="og:image" content="https://subcleaner.com/og-image.png" />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
 	<meta property="og:image:alt" content="Reddit Sub Cleaner - Clean Up Your Reddit Feed" />
 	<meta property="og:site_name" content="Sub Cleaner" />
 
-	<!-- Twitter -->
+	<!-- Twitter (site-wide) -->
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:url" content="https://subcleaner.com/" />
-	<meta name="twitter:title" content="Reddit Sub Cleaner - Clean Up Your Reddit Feed" />
-	<meta
-		name="twitter:description"
-		content="Easily unsubscribe from multiple subreddits at once. Take control of your Reddit experience with our simple, secure tool."
-	/>
 	<meta name="twitter:image" content="https://subcleaner.com/og-image.png" />
 	<meta name="twitter:image:alt" content="Reddit Sub Cleaner - Clean Up Your Reddit Feed" />
 

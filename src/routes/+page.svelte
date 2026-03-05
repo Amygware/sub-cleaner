@@ -156,6 +156,23 @@
 		</div>
 	</section>
 
+	<!-- Stats Banner -->
+	<section class="relative z-10 py-16">
+		<div class="container mx-auto px-4">
+			<div class="flex flex-col items-center justify-center gap-8 sm:flex-row sm:gap-16">
+				<div class="text-center">
+					<p class="text-5xl font-bold text-orange-500">{(18000).toLocaleString()}+</p>
+					<p class="mt-2 text-muted-foreground">subreddits cleaned by Reddit users</p>
+				</div>
+				<div class="hidden h-12 w-px bg-border sm:block"></div>
+				<div class="text-center">
+					<p class="text-5xl font-bold text-orange-500">100%</p>
+					<p class="mt-2 text-muted-foreground">free & open source</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
 	<!-- Trust Signals Section -->
 	<section class="relative z-10 py-12">
 		<div class="container mx-auto px-4">
@@ -265,7 +282,7 @@
 			>
 				<h2 class="mb-4 text-3xl font-bold">Ready to Clean Up Your Reddit Feed?</h2>
 				<p class="mb-8 text-muted-foreground">
-					Join thousands of Reddit users who have simplified their feeds with Sub Cleaner.
+					Join 18,000+ subreddits cleaned — simplify your feed with Sub Cleaner.
 				</p>
 				<Button onclick={handleLogin} size="lg" class="bg-orange-500 hover:bg-orange-600">
 					Get Started Now
